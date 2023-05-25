@@ -1,0 +1,13 @@
+{
+    "watch": [
+        "./src",
+        "./config",
+        "./@types"
+    ],
+    "ext": ".ts,.js,.json",
+    "exec": "ts-node ./src/app.ts",
+    "ignore": [
+        "node_modules"
+    ],
+    "delay": "100"
+}
