@@ -1,0 +1,86 @@
+{
+  // "extends": ["../../.eslintrc.json"],
+  // "plugins": [
+  //   "sort-keys-custom-order"
+  // ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module",
+    "ecmaVersion": 2020
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "sort-keys-custom-order"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "id-blacklist": [
+      "error",
+      "any",
+      "Number" /* "number", */,
+      "String",
+      "string",
+      "Boolean",
+      "boolean",
+      "function",
+      "Function"
+    ],
+    "sort-keys": 0
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      // "parserOptions": {
+      //   "project": "./tsconfig.json"
+      //   // "sourceType": "module"
+      // },
+      "rules": {
+        "@typescript-eslint/explicit-member-accessibility": 0,
+        "@typescript-eslint/no-unsafe-member-access": 0,
+        "@typescript-eslint/unified-signatures": 2,
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "@typescript-eslint/no-unsafe-assignment": 0,
+        "@typescript-eslint/no-unsafe-return": 0
+      }
+    },
+    {
+      "files": ["**/form-structures/forms/**/*.ts"],
+      "rules": {
+        "sort-keys-custom-order/object-keys": [
+          "warn", {
+            "orderedKeys": [
+
+              "label",
+              "id", "override_path", "override_element_name",
+              "type",
+
+              "repeatable_on", "optional",
+
+              "condition",
+              "repeatable", "repeat_button", "remove_button",
+
+              "lookup", "exclude",
+
+              "text",
+
+              "top", "rows",
+              "show_label", "currency",
+              "optional", "inline",
+
+              "options",
+
+              "placeholder", "help", "style",
+
+              "_id", "form_name", "elements"
+
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

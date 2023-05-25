@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es2017",
+    "module": "commonjs",
+    "lib":["ES2020"],
+    "outDir": "dist",
+    "rootDir": ".",
+    "sourceMap": true,
+
+    /* Module Resolution */
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    // "paths": {},
+    "esModuleInterop": true,
+
+    /* Experimental Options */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    /* Others */
+    "preserveConstEnums": true,
+    "resolveJsonModule": true,
+    "pretty": true,
+
+    "typeRoots": [
+      "@types",
+      "node_modules/@types"
+    ],
+
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "strictNullChecks": true
+  },
+  "include": ["src", "test", "@types", "assets"],
+  "exclude": ["node_modules"]
+}
