@@ -5,7 +5,17 @@ export class QuestionnaireRepo implements IQuestionnaireRepo {
     constructor(private models: typeof Models) {}
 
     async getQuestions() {
-        return await this.models.QuestionsModel.findAll();
+        return await this.models.QuestionsModel.findAll({
+            include: [{
+                model: this.models.OptionsModel,
+                as: 'options',
+                through: {
+                    attributes: [] // Exclude the attributes of the join table from the result
+                },
+                attributes: ['id', 'option_text'] // Include only the option_text in the result
+            }],
+            attributes: ['id', 'question_text'] 
+        });
     }
 
     async getOptions() {
