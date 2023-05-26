@@ -1,6 +1,6 @@
-import { DataTypes, Model } from "sequelize/types";
+import { DataTypes, Model } from "sequelize";
 import { IUser } from "../../../modules/user/IUserRepo";
-import sequelize from "..";
+import { sequelize } from '../../index'
 
 export class UserModel extends Model<IUser, Omit<IUser, 'id'>> implements IUser {
     declare id: number;
