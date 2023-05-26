@@ -1,9 +1,0 @@
-node_modules
-coverage
-build
-scripts/setup.js
-dist
-*.spec.ts
-*.faker.ts
-migrations
-test

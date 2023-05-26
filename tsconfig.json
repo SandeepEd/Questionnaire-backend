@@ -1,40 +1,30 @@
 {
   "compilerOptions": {
-    /* Basic Options */
-    "target": "es2017",
+    "target": "ES2017",
+    "lib": [
+      "ES2020"
+    ],
     "module": "commonjs",
-    "lib":["ES2020"],
     "outDir": "dist",
-    "rootDir": ".",
-    "sourceMap": true,
-
-    /* Module Resolution */
     "moduleResolution": "node",
-    "baseUrl": "./src",
-    // "paths": {},
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-
-    /* Experimental Options */
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-
-    /* Others */
-    "preserveConstEnums": true,
-    "resolveJsonModule": true,
+    "baseUrl": "src",
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
     "pretty": true,
-
+    // "importHelpers": true,
     "typeRoots": [
       "@types",
       "node_modules/@types"
     ],
-
-    "importHelpers": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-
-    "strictNullChecks": true
   },
-  "include": ["src", "test", "@types", "assets"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src",
+    "@types"
+  ],
+  "exclude": [
+    "node_modules",
+  ]
 }
