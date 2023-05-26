@@ -1,10 +1,23 @@
 import { sequelize } from "../../../database";
 import { DataTypes, Model } from "sequelize";
 import { IOptions } from "../../../types";
+import { QuestionOptionModel } from "./QuestionOption";
+import { QuestionsModel } from "./questions";
 
 export class OptionsModel extends Model<IOptions> implements IOptions {
     declare id: number;
     declare option_text: string;
+
+    static associate() {
+        this.belongsToMany(QuestionsModel, {
+            through: {
+                model: QuestionOptionModel,
+                unique: false,
+            },
+            foreignKey: 'option_id',
+            as: 'questions'
+        });
+    }
 }   
 
 OptionsModel.init({
@@ -26,5 +39,6 @@ OptionsModel.init({
     schema: `questionnaire`,
     sequelize,
     paranoid: true,
-    timestamps: false
+    timestamps: false,
+    underscored: true
 })

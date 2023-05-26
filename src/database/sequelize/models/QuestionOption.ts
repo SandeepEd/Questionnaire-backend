@@ -48,5 +48,6 @@ QuestionOptionModel.init({
     schema: `questionnaire`,
     sequelize,
     paranoid: true,
-    timestamps: false
+    timestamps: false,
+    underscored: true
 })

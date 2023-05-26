@@ -2,6 +2,7 @@ import { sequelize } from "../../../database";
 import { Association, DataTypes, Model, Options } from "sequelize";
 import { IQuestions } from "../../../types";
 import { OptionsModel as OptionsModel } from "./options";
+import { QuestionOptionModel } from "./QuestionOption";
 
 export class QuestionsModel extends Model<IQuestions> implements IQuestions {
     declare id: number;
@@ -13,8 +14,16 @@ export class QuestionsModel extends Model<IQuestions> implements IQuestions {
     static associate() {
         this.OptionAssociation = this.hasMany(OptionsModel, {
             foreignKey: 'correct_option',
-            as: 'options'
+            as: 'correct_option'
         })
+        this.belongsToMany(OptionsModel, {
+            through: {
+                model: QuestionOptionModel,
+                unique: false,
+            },
+            foreignKey: 'question_id',
+            as: 'options' // The alias must match what you use in your `include` statement
+        });
     }
 }
 
@@ -42,5 +51,6 @@ QuestionsModel.init({
     schema: `questionnaire`,
     sequelize,
     paranoid: true,
-    timestamps: false
+    timestamps: false,
+    underscored: true
 })
