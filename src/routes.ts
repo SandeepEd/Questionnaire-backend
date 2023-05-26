@@ -1,9 +1,12 @@
 import express from "express";
-import { ManageRoute } from "./utils/ManageRoute";
 import { userRouter } from "./modules/user/routes";
-console.log(ManageRoute);
+import { questionnaireRoute } from "./modules/questionnaire/routes";
+import { logInRouter, signUpRouter } from "./modules/auth/routes";
 
 const router = express.Router();
-router.use('/user', ManageRoute, userRouter)
+router.use('/user', userRouter)
+router.use(`/questionnaire`, questionnaireRoute)
+router.use(`/login`, logInRouter)
+router.use(`/signup`, signUpRouter)
 
 export { router }
