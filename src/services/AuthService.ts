@@ -1,6 +1,5 @@
 import { compare, hash } from "bcrypt";
 import jwt from "jsonwebtoken";
-// import { IUser } from "modules/user/IUserRepo";
 
 interface IUserToken {
     id: number;
@@ -16,7 +15,6 @@ export interface IAuthServices {
 }
 
 export class AuthServices implements IAuthServices {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     constructor() { }
 
     public generateUserToken(user: IUserToken) {
