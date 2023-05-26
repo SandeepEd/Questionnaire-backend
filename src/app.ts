@@ -1,17 +1,15 @@
-import express from 'express';
-import { router } from './routes';
 import cors from 'cors';
-import session from 'express-session'
-// import { createClient } from 'redis';
-// import RedisStore from 'connect-redis';
+import { router } from './routes';
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import createError from 'http-errors';
 import nocache from 'nocache';
 import helmet from 'helmet';
-// import { v4 as uuid } from 'uuid';
-import cookieParser from 'cookie-parser';
-import createError from 'http-errors';
 import { handleErrors } from './utils/HandleErrors';
 
 const app = express();
+
 const expressSession = session({
     name: 'apiSession',
     secret: 'my_secret',
@@ -39,11 +37,6 @@ app.use(
     cookieParser(),
 )
 
-app.use((req, res, next) => {
-    console.log(`session :::`, req.session)
-    next()
-})
-
 app.use(router)
 
 app.use((req, res, next) => {
@@ -53,6 +46,6 @@ app.use((req, res, next) => {
 app.use(handleErrors)
 
 app.listen(3000, () => {
-    console.log('Server is running');
-}
+    console.log('Server running on port 3000');
+    }
 );
