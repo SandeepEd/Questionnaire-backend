@@ -38,5 +38,6 @@ UserModel.init({
     schema: `identity`,
     sequelize,
     paranoid: true,
-    timestamps: false
+    timestamps: false,
+    underscored: true
 })
