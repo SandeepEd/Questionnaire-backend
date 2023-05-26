@@ -1,49 +1,37 @@
 {
-    "name": "questionnaire-backend",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon",
-        "lint": "eslint src --ext .ts,.js",
-        "lint:fix": "npm run lint -- --fix"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "bcrypt": "^5.1.0",
-        "config": "^3.3.9",
-        "cookie-parser": "^1.4.6",
-        "cors": "^2.8.5",
-        "express": "^4.18.2",
-        "express-session": "^1.17.3",
-        "helmet": "^7.0.0",
-        "http-errors": "^2.0.0",
-        "jsonwebtoken": "^9.0.0",
-        "nocache": "^3.0.4",
-        "nodemon": "^2.0.22",
-        "pg": "^8.10.0",
-        "pg-hstore": "^2.3.4",
-        "sequelize": "^6.31.1",
-        "ts-node": "^10.9.1"
-    },
-    "devDependencies": {
-        "@types/bcrypt": "^5.0.0",
-        "@types/config": "^3.3.0",
-        "@types/cookie-parser": "^1.4.3",
-        "@types/cors": "^2.8.13",
-        "@types/express": "^4.17.17",
-        "@types/express-session": "^1.17.7",
-        "@types/http-errors": "^2.0.1",
-        "@types/jsonwebtoken": "^9.0.2",
-        "@types/node": "^18.16.3",
-        "@types/uuid": "^9.0.1",
-        "@typescript-eslint/eslint-plugin": "^5.59.7",
-        "@typescript-eslint/parser": "^5.59.7",
-        "eslint": "^8.41.0",
-        "eslint-plugin-sort-keys-custom-order": "^1.0.5",
-        "tslib": "^2.5.2"
-    }
+  "name": "questionnaire-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SandeepEd/Questionnaire-backend.git"
+  },
+  "keywords": [],
+  "author": "Sandeep Edara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SandeepEd/Questionnaire-backend/issues"
+  },
+  "homepage": "https://github.com/SandeepEd/Questionnaire-backend#readme",
+  "dependencies": {
+    "config": "^3.3.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "nodemon": "^2.0.22",
+    "pg": "^8.11.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.31.1"
+  },
+  "devDependencies": {
+    "@types/config": "^3.3.0",
+    "@types/express": "^4.17.17",
+    "@types/express-session": "^1.17.7",
+    "@types/node": "^20.2.4",
+    "ts-node": "^10.9.1"
+  }
 }
