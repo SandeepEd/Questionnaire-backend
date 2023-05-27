@@ -2,10 +2,10 @@ import { UserModel } from "./user";
 import { UserResponses } from "./userResponse";
 import { QuestionsModel } from "./questions";
 import { OptionsModel } from "./options";
-import { QuestionOptionModel } from "./QuestionOption";
+import { AssignmentModel } from "./Assignment";
 
 UserResponses.associate()
 QuestionsModel.associate()
-QuestionOptionModel.associate()
+AssignmentModel.associate()
 
-export { UserModel, UserResponses, QuestionsModel, OptionsModel, QuestionOptionModel }
+export { UserModel, UserResponses, QuestionsModel, OptionsModel, AssignmentModel }

@@ -1,7 +1,7 @@
 import { sequelize } from "../../../database";
 import { DataTypes, Model } from "sequelize";
 import { IOptions } from "../../../types";
-import { QuestionOptionModel } from "./QuestionOption";
+import { AssignmentModel } from "./Assignment";
 import { QuestionsModel } from "./questions";
 
 export class OptionsModel extends Model<IOptions> implements IOptions {
@@ -11,7 +11,7 @@ export class OptionsModel extends Model<IOptions> implements IOptions {
     static associate() {
         this.belongsToMany(QuestionsModel, {
             through: {
-                model: QuestionOptionModel,
+                model: AssignmentModel,
                 unique: false,
             },
             foreignKey: 'option_id',

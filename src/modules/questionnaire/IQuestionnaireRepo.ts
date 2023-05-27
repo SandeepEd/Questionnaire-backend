@@ -1,9 +1,9 @@
-import { IOptions, IQuestionOption, IQuestions, IUserResponse } from "types";
+import { IOptions, IAssignment, IQuestions, IUserResponse } from "types";
 
 export interface IQuestionnaireRepo {
-    getQuestions(): Promise<IQuestions[]>;
+    getQuestions(userId: number): Promise<any>;
     getOptions(): Promise<IOptions[]>;
-    getQuestionOptions(): Promise<IQuestionOption[]>;
+    getQuestionOptions(): Promise<IAssignment[]>;
     getUserResponses(): Promise<IUserResponse[]>;
     createUserResponse(userResponse: IUserResponse): Promise<IUserResponse>;
 }
