@@ -2,8 +2,8 @@ import { QuestionnaireRepo } from "../../../../modules/questionnaire/questionnai
 
 export class GetQuestionsUseCase {
     constructor(private questionnaireRepo: QuestionnaireRepo) {}
-    async execute() {
-        const questions = await this.questionnaireRepo.getQuestions();
+    async execute(userId: number) {
+        const questions = await this.questionnaireRepo.getQuestions(userId);
         return questions;
     }
 }

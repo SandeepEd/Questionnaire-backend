@@ -14,7 +14,7 @@ export class GetUserController extends BaseController {
     next: NextFunction
   ): Promise<any> {
     try {
-      const user = await this.getUserUseCase.execute(1);
+      const user = await this.getUserUseCase.execute(req.user.id);
       this.handleResponse(req, res, user);
     } catch (err) {
       next(err);

@@ -9,10 +9,12 @@ export interface IOptions {
     option_text: string;
 }
 
-export interface IQuestionOption {
+export interface IAssignment {
     id: number;
     question_id: number;
     option_id: number;
+    user_id: number;
+    response_id: number;
 }
 
 export interface IUserResponse {

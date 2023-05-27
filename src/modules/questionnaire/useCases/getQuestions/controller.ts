@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
 import { BaseController } from "../../../../shared/BaseController";
 import { GetQuestionsUseCase } from "./useCase";
 
@@ -7,9 +7,9 @@ export class GetQuestionsController extends BaseController {
         super();
     }
     
-    async handleController(req: Request, res: Response, next: NextFunction): Promise<any> {
+    async handleController(req: any, res: Response, next: NextFunction): Promise<any> {
         try {
-            const result = await this.useCase.execute();
+            const result = await this.useCase.execute(req.user.id);
             this.handleResponse(req, res, result);
         } catch (err) {
         return next(err)
