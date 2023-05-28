@@ -1,3 +1,4 @@
+import { IQuestion, IUserResponse } from "../../types";
 import * as Models from "../../database/sequelize/models";
 import { IQuestionnaireRepo } from "./IQuestionnaireRepo";
 
@@ -11,7 +12,7 @@ export class QuestionnaireRepo implements IQuestionnaireRepo {
         {
           model: this.models.QuestionsModel,
           as: "question",
-          attributes: ["id", "question_text"],
+          attributes: ["id", "question_text", "correct_option_id"],
         },
         {
           model: this.models.OptionsModel,
@@ -24,7 +25,6 @@ export class QuestionnaireRepo implements IQuestionnaireRepo {
 
     for (const assignment of assignments) {
       const questionId = assignment.question.id;
-      const questionText = assignment.question.question_text;
       const optionId = assignment.option.id;
       const optionText = assignment.option.option_text;
 
@@ -35,7 +35,8 @@ export class QuestionnaireRepo implements IQuestionnaireRepo {
         });
       } else {
         questionsMap.set(questionId, {
-          question_text: questionText,
+          question_text: assignment.question.question_text,
+          correct_option_id: assignment.question.correct_option_id,
           response_id: assignment.response_id,
           options: [
             {
@@ -53,27 +54,24 @@ export class QuestionnaireRepo implements IQuestionnaireRepo {
       result.push({
         id: questionId,
         response_id: value.response_id,
+        correct_option_id: value.correct_option_id,
         question_text: value.question_text,
         options: value.options,
       });
     }
 
-    return result;
+    return result as IQuestion[];
   }
 
-  async getOptions() {
-    return await this.models.OptionsModel.findAll();
-  }
-
-  async getQuestionOptions() {
-    return await this.models.AssignmentModel.findAll();
-  }
-
-  async getUserResponses() {
-    return await this.models.UserResponses.findAll();
-  }
-
-  async createUserResponse(userResponse: any) {
-    return await this.models.UserResponses.create(userResponse);
-  }
+  async postResponse({ question_id, response_id, user_id }: Omit<IUserResponse, 'id'>) {
+        const [ count ] = await this.models.AssignmentModel.update({
+            response_id
+        },{
+            where: {
+                user_id,
+                question_id
+            }
+        });
+        return count;
+    }
 }
