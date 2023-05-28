@@ -15,7 +15,7 @@ export class LogInController extends BaseController {
             delete result.user.password;
             SessionManager.setSession(req, result.token);
             res.cookie(`spa_token`, true);
-            this.handleResponse(req, res, result);
+            this.handleResponse(req, res, result.user);
 
         } catch (error: any) {
             next(error);
