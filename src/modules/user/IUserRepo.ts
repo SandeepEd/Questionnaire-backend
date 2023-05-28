@@ -7,4 +7,5 @@ export interface IUser {
     name: string;
     email: string;
     password: string;
+    assignment_submitted: boolean;
 }
