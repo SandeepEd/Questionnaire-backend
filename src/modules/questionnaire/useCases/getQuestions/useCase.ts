@@ -14,6 +14,7 @@ export class GetQuestionsUseCase {
       if (user?.assignment_submitted) {
         question.isCorrect =
           question.response_id === question.correct_option_id;
+          return question;
       }
       delete question.correct_option_id;
       return question;
