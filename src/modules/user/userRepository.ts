@@ -10,10 +10,21 @@ export class UserRepository implements IUserRepo {
         return createdUser;
     }
 
+    public updateUserSubmission(assignment_submitted: boolean, user_id: number) {
+        const { UserModel } = this.models;
+        const updatedUser = UserModel.update({
+            assignment_submitted
+        }, { where: { id: user_id } });
+        return updatedUser;
+    }
+
     async getUserByEmail(email: string): Promise<IUser | null> {
         const { UserModel } = this.models;
         const user = await UserModel.findOne({ where: { email } });
-        return user;
+        if(user) {
+            return user.get();
+        }
+        return null;
     }
 
     async getUserById(id: number): Promise<IUser | null> {

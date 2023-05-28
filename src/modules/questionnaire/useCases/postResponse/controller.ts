@@ -13,11 +13,12 @@ export class PostResponseController extends BaseController {
     next: NextFunction
   ): Promise<any> {
     try {
-      const { question_id, response_id } = req.body;
+      const { question_id, response_id, is_submitting } = req.body;
       const result = await this.useCase.execute({
         question_id,
         response_id,
         user_id: req.user.id,
+        is_submitting,
       });
       this.handleResponse(req, res, result);
     } catch (err) {
