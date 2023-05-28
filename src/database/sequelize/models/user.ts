@@ -7,6 +7,7 @@ export class UserModel extends Model<IUser, Omit<IUser, 'id'>> implements IUser 
     declare name: string;
     declare email: string;
     declare password: string;
+    declare assignment_submitted: boolean;
 }
 
 UserModel.init({
@@ -30,6 +31,11 @@ UserModel.init({
     password: {
         field: 'password',
         type: DataTypes.STRING,
+        allowNull: false
+    },
+    assignment_submitted: {
+        field: 'assignment_submitted',
+        type: DataTypes.BOOLEAN,
         allowNull: false
     }
 }, {
