@@ -1,7 +1,8 @@
-import { NextFunction } from "express";
-import { BaseController } from "../../../../shared/BaseController";
-import { GetUserUseCase } from "./useCase";
-import { Response } from "express-serve-static-core";
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { NextFunction } from 'express';
+import { Response } from 'express-serve-static-core';
+import { BaseController } from '../../../../shared/BaseController';
+import { GetUserUseCase } from './useCase';
 
 export class GetUserController extends BaseController {
   constructor(public getUserUseCase: GetUserUseCase) {
@@ -11,7 +12,7 @@ export class GetUserController extends BaseController {
   public async handleController(
     req: any,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ): Promise<any> {
     try {
       const user = await this.getUserUseCase.execute(req.user.id);

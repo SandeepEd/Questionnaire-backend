@@ -1,11 +1,12 @@
-import { UserRepository } from "../../../../modules/user/userRepository";
-import { QuestionnaireRepo } from "../../../../modules/questionnaire/questionnaireRepo";
+import { UserRepository } from '../../../../modules/user/userRepository';
+import { QuestionnaireRepo } from '../../../../modules/questionnaire/questionnaireRepo';
 
 export class GetQuestionsUseCase {
   constructor(
     private questionnaireRepo: QuestionnaireRepo,
-    private userRepo: UserRepository
+    private userRepo: UserRepository,
   ) {}
+
   async execute(userId: number) {
     let questions = await this.questionnaireRepo.getQuestions(userId);
     const user = await this.userRepo.getUserById(userId);
@@ -14,7 +15,7 @@ export class GetQuestionsUseCase {
       if (user?.assignment_submitted) {
         question.isCorrect =
           question.response_id === question.correct_option_id;
-          return question;
+        return question;
       }
       delete question.correct_option_id;
       return question;

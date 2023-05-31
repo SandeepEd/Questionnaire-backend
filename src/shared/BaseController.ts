@@ -1,14 +1,13 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response } from 'express';
 
 export abstract class BaseController {
-    constructor() {
-        this.handleController = this.handleController.bind(this);
-    }
+  constructor() {
+    this.handleController = this.handleController.bind(this);
+  }
 
-    public abstract handleController(req: Request, res: Response, next: NextFunction): Promise<void | any>;
+  public abstract handleController(req: Request, res: Response, next: NextFunction): Promise<void | any>;
 
-
-    public handleResponse(req: any, res: any, data: any) {
-        res.status(200).json(data);
-    }
+  public handleResponse(req: Request, res: Response, data: any) {
+    res.status(200).json(data);
+  }
 }

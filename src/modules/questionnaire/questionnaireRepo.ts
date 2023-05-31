@@ -1,6 +1,6 @@
-import { IQuestion, IUserResponse } from "../../types";
-import * as Models from "../../database/sequelize/models";
-import { IQuestionnaireRepo } from "./IQuestionnaireRepo";
+import { IQuestion, IUserResponse } from '../../types';
+import * as Models from '../../database/sequelize/models';
+import { IQuestionnaireRepo } from './IQuestionnaireRepo';
 
 export class QuestionnaireRepo implements IQuestionnaireRepo {
   constructor(private models: typeof Models) {}
@@ -11,13 +11,13 @@ export class QuestionnaireRepo implements IQuestionnaireRepo {
       include: [
         {
           model: this.models.QuestionsModel,
-          as: "question",
-          attributes: ["id", "question_text", "correct_option_id"],
+          as: `question`,
+          attributes: [ `id`, `question_text`, `correct_option_id` ],
         },
         {
           model: this.models.OptionsModel,
-          as: "option",
-          attributes: ["id", "option_text"],
+          as: `option`,
+          attributes: [ `id`, `option_text` ],
         },
       ],
     });
@@ -29,6 +29,7 @@ export class QuestionnaireRepo implements IQuestionnaireRepo {
       const optionText = assignment.option.option_text;
 
       if (questionsMap.has(questionId)) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         questionsMap.get(questionId).options.push({
           id: optionId,
           option_text: optionText,
@@ -50,7 +51,8 @@ export class QuestionnaireRepo implements IQuestionnaireRepo {
 
     // Convert Map to Array
     const result: any = [];
-    for (const [questionId, value] of questionsMap.entries()) {
+    for (const [ questionId, value ] of questionsMap.entries()) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       result.push({
         id: questionId,
         response_id: value.response_id,
@@ -64,14 +66,14 @@ export class QuestionnaireRepo implements IQuestionnaireRepo {
   }
 
   async postResponse({ question_id, response_id, user_id }: Omit<IUserResponse, 'id'>) {
-        const [ count ] = await this.models.AssignmentModel.update({
-            response_id
-        },{
-            where: {
-                user_id,
-                question_id
-            }
-        });
-        return count;
-    }
+    const [ count ] = await this.models.AssignmentModel.update({
+      response_id,
+    }, {
+      where: {
+        user_id,
+        question_id,
+      },
+    });
+    return count;
+  }
 }

@@ -1,8 +1,8 @@
-import { Router } from "express";
-import { getUserController } from "./useCases/getUser";
+import { Router } from 'express';
+import { getUserController } from './useCases/getUser';
 
 const userRouter = Router();
 
-userRouter.get('/me', getUserController.handleController);
+userRouter.get(`/me`, getUserController.handleController);
 
-export { userRouter }
+export { userRouter };

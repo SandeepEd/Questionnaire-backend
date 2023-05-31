@@ -1,13 +1,11 @@
-import { Sequelize, Options } from "sequelize";
-import config from "config";
+import { Options, Sequelize } from 'sequelize';
+import config from 'config';
 
 const { dialect, username, password, database, host, port }: Options =
-  config.get("database");
+  config.get(`database`);
 
 export class SequelizeSingleton {
   private static instance: Sequelize;
-
-  private constructor() {}
 
   public static getInstance() {
     if (!SequelizeSingleton.instance) {
@@ -26,8 +24,9 @@ export class SequelizeSingleton {
           //   },
           // },
         });
-      } catch (error) {
-        console.log("error", error);
+      } catch (error: any) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        throw new Error(error);
       }
     }
 
