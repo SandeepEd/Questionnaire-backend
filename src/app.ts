@@ -3,15 +3,24 @@ import { router } from './routes';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import { createClient } from 'redis';
+import RedisStore from 'connect-redis';
 import createError from 'http-errors';
 import nocache from 'nocache';
 import helmet from 'helmet';
 import { handleErrors } from './utils/HandleErrors';
 
 const app = express();
+const redisClient = createClient()
+redisClient.connect().catch(console.error)
+
+const redisStore = new RedisStore({
+    client: redisClient,
+})
 
 const expressSession = session({
     name: 'apiSession',
+    store: redisStore,
     secret: 'my_secret',
     resave: true,
     saveUninitialized: false,
